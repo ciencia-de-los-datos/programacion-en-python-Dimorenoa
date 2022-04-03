@@ -77,7 +77,18 @@ def pregunta_03():
     ]
 
     """
-    return
+    letras=list(set([z[0] for z in lista]))
+    letras.sort()
+    suma2=[]
+
+    for letra in letras:
+        sum2=0
+        for element in lista:
+            if element[0]==letra:
+                sum2=sum2+int(element[1])
+        tupla=(letra,sum2)        
+        suma2=suma2+[tupla]
+    return suma2
 
 
 def pregunta_04():
@@ -102,7 +113,15 @@ def pregunta_04():
     ]
 
     """
-    return
+    meses=[z[2].split('-')[1] for z in lista]
+    cuentameses=[]
+    for mes in list(set(meses)):
+        cuenta=meses.count(mes)
+        tupla=(mes,cuenta)
+        cuentameses=cuentameses+[tupla]
+    cuentameses.sort()
+    
+    return cuentameses
 
 
 def pregunta_05():
@@ -120,7 +139,21 @@ def pregunta_05():
     ]
 
     """
-    return
+    numeros=[z[1] for z in lista]
+    letras=list(set([z[0] for z in lista]))
+    letras.sort()
+    maximin=[]
+    for letra in letras:
+        mini=max(numeros)
+        maxi=min(numeros)
+        for element in lista:
+            if element[1] < mini and element[0] == letra:
+                mini=element[1]
+            if element[1] > maxi and element[0] == letra:
+                maxi=element[1]
+        tupla=(letra,int(maxi),int(mini))
+        maximin=maximin+[tupla]
+    return maximin
 
 
 def pregunta_06():
