@@ -48,7 +48,18 @@ def pregunta_02():
     ]
 
     """
-    return
+    letras=list(set([z[0] for z in lista]))
+    letras.sort()
+    cuenta=[]
+
+    for letra in letras:
+        cant=0
+        for element in lista:
+            if element[0]==letra:
+                cant=cant+1
+        tupla=(letra,cant)        
+        cuenta=cuenta+[tupla]    
+    return cuenta
 
 
 def pregunta_03():
