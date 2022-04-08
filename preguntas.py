@@ -178,7 +178,26 @@ def pregunta_06():
     ]
 
     """
-    return
+    columna=[(z[4].split(',')) for z in lista]
+    pares=[]
+    for clave in range(0, len(columna)):
+        for element in range(0, len(columna[clave])):
+            pares.append([(columna[clave][element][:3]),int(columna[clave][element][4:])])
+    claves=list(set([z[0] for z in pares]))
+    numeros=[z[1] for z in pares]
+    claves.sort()
+    maximin=[]
+    for clave2 in claves:
+        mini=max(numeros)
+        maxi=min(numeros)
+        for par in pares:
+            if par[1] < mini and par[0] == clave2:
+                mini=par[1]
+            if par[1] > maxi and par[0] == clave2:
+                maxi=par[1]
+        tupla=(clave2,int(mini),int(maxi))
+        maximin=maximin+[tupla]
+    return maximin
 
 
 def pregunta_07():
