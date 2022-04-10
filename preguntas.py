@@ -221,7 +221,19 @@ def pregunta_07():
     ]
 
     """
-    return
+    letras=([z[0] for z in lista])
+    numeros=list(set([z[1] for z in lista]))
+    numeros.sort()
+    numletra=[]
+    for numero in numeros:
+        listado=[]
+        for element in lista:
+            if element[1] == numero:
+                listado.append(element[0])
+        tupla=(int(numero),(listado))
+        numletra=numletra+[tupla]
+    return numletra
+
 
 
 def pregunta_08():
@@ -246,7 +258,18 @@ def pregunta_08():
     ]
 
     """
-    return
+    letras=([z[0] for z in lista])
+    numeros=list(set([z[1] for z in lista]))
+    numeros.sort()
+    numletra=[]
+    for numero in numeros:
+        listado=[]
+        for element in lista:
+            if element[1] == numero:
+                listado.append(element[0])
+        tupla=(int(numero),sorted(list(set(listado))))
+        numletra=numletra+[tupla]
+    return numletra
 
 
 def pregunta_09():
@@ -269,7 +292,22 @@ def pregunta_09():
     }
 
     """
-    return
+    columna=[(z[4].split(',')) for z in lista]
+    pares=[]
+    for clave in range(0, len(columna)):
+        for element in range(0, len(columna[clave])):
+            pares.append([(columna[clave][element][:3])])
+    claves=list(set([z[0] for z in pares]))
+    claves.sort()
+    cuentaclave={}
+    for clave2 in claves:
+        contador=0
+        for par in pares:
+            if par[0] == clave2:
+                contador=contador+1
+        diccionario={clave2:contador}
+        cuentaclave.update(diccionario)
+    return cuentaclave
 
 
 def pregunta_10():
@@ -290,7 +328,11 @@ def pregunta_10():
 
 
     """
-    return
+    
+    resultado=[]
+    for element in lista:
+        resultado.append((element[0],len(element[3].split(',')),len(element[4].split(','))))
+    return resultado
 
 
 def pregunta_11():
@@ -311,7 +353,24 @@ def pregunta_11():
 
 
     """
-    return
+    
+    columna2=[z[3].split(',') for z in lista]
+    pares=[]
+    for clave in columna2:
+        pares=pares+clave
+    claves=list(set(pares))
+    claves.sort()
+    columna=[(z[3].split(','),z[1]) for z in lista]
+    diccionario={}
+    for clave in claves:
+        suma=0
+        for element in columna:
+            for letra in element[0]:
+                if letra == clave:
+                    suma=suma+int(element[1])
+        dic={clave:suma}
+        diccionario.update(dic)
+    return diccionario
 
 
 def pregunta_12():
@@ -329,4 +388,15 @@ def pregunta_12():
     }
 
     """
-    return
+    letras=list(set([z[0] for z in lista]))
+    letras.sort()
+    columna=[(z[0],sum([int(x[4:]) for x in z[4].split(',')])) for z in lista]
+    diccionario={}
+    for letra in letras:
+        suma=0
+        for element in columna:
+            if element[0] == letra:
+                suma=suma+element[1]
+        dic={letra:suma}
+        diccionario.update(dic)
+    return diccionario
